@@ -13,12 +13,16 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sun.el.parser.AstMapData;
 import com.yc.SpringBootPfstblog.bean.Result;
 import com.yc.SpringBootPfstblog.bean.User;
 import com.yc.SpringBootPfstblog.biz.BizException;
 import com.yc.SpringBootPfstblog.biz.UserBiz;
+import com.yc.SpringBootPfstblog.util.Utils;
+
+import jdk.jfr.BooleanFlag;
 
 @Controller
 public class UserAction {
@@ -31,7 +35,7 @@ public class UserAction {
 	  public String regist(@Valid User user,Errors errors ,Model m) {
 		  
 		if(errors.hasErrors()) {
-			m.addAttribute("errors", asMap(errors));
+			m.addAttribute("errors", Utils.asMap(errors));
 			m.addAttribute("user",user);
 			return "reg";
 		}
@@ -41,7 +45,7 @@ public class UserAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			errors.rejectValue("account","account", e.getMessage());
-			m.addAttribute("errors",asMap(errors));
+			m.addAttribute("errors", Utils.asMap(errors));
 			m.addAttribute("user",user);
 		  return "reg";
 		}
@@ -55,35 +59,28 @@ public class UserAction {
 		 public String toreg() {
 			 return "reg";
 		 }
-	  //将所有的字段验证写入到一个map
-	private Map<String,String> asMap(Errors errors) {
-		 if(errors.hasErrors()) {
-			 Map<String,String> ret=new HashMap<String,String> ();
-             for(FieldError fe : errors.getFieldErrors()) {
-            	 ret.put(fe.getField(),fe.getDefaultMessage());
-             }
-            return ret;
-		 }else {
-			 return null;
-		 }
-		
-	}
+	 
 
 
 	//登录  Ajax实现 ，使用vue
 	@GetMapping("login.do")
-	  public Result login(User user,HttpSession session) {
+	@ResponseBody
+	  public Result login(@Valid User user,Errors errors,HttpSession session) {
 		  try {
-	        
+	        if(errors.hasFieldErrors("account")||errors.hasFieldErrors("pwd")) {
+	        	Result res=new Result(0,"验证错误！",Utils.asMap(errors));
+	        	return res;
+	        }
 			User dbuser=ubiz.login(user);
-			session.setAttribute("LoginUser",dbuser);
+			session.setAttribute("loginedUser",dbuser);
+			return new Result(1,"登录成功",dbuser);
 		} catch (BizException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new Result(e.getMessage());
 		}
 		  
-		  return new Result(1,"登录成功");
+		  
 	  }
 
 	 

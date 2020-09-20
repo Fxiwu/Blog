@@ -196,12 +196,12 @@ $(window).scroll(function () {
 })();
 
 /*禁止键盘操作*/
-document.onkeydown=function(event){
+/*document.onkeydown=function(event){
 	var e = event || window.event || arguments.callee.caller.arguments[0];
 	if((e.keyCode === 123) || (e.ctrlKey) || (e.ctrlKey) && (e.keyCode === 85)){
 		return false;
 	}
-}; 
+}; */
 
 /*文章评论*/
 $(function(){

@@ -25,7 +25,7 @@ public class UserBiz {
 	public User login(User user) throws BizException {
 		User dbuser=umapper.login(user);
 		if(dbuser==null) {
-			throw new BizException("账户名或密码错误");
+			throw new BizException("用户名或密码错误");
 		}
 		return dbuser;
 	}
