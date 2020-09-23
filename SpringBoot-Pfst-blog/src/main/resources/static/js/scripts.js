@@ -117,24 +117,32 @@ document.body.onselectstart = document.body.ondrag = function () {
 $('[data-toggle="tooltip"]').tooltip();
  
  
-//无限滚动反翻页
-jQuery.ias({
-	history: false,
-	container : '.content',
-	item: '.excerpt',
-	pagination: '.pagination',
-	next: '.next-page a',
-	trigger: '查看更多',
-	loader: '<div class="pagination-loading"><img src="/Home/images/loading.gif" /></div>',
-	triggerPageThreshold: 5,
-	onRenderComplete: function() {
-		$('.excerpt .thumb').lazyload({
-			placeholder: '/Home/images/occupying.png',
-			threshold: 400
-		});
-		$('.excerpt img').attr('draggable','false');
-		$('.excerpt a').attr('draggable','false');
-	}
+//无限滚动翻页
+var page = 1;
+$(function(){
+	var ias = jQuery.ias({
+		// 动态加载内容的容器标签, 放置 article 的容器
+		container : '.content',
+		// 动态加载项目 ==> 每个文章的标签 : article
+		item : '.excerpt',
+		// 分页标签
+		pagination : '#pagination',
+		// 分页标签内部的超链接, 用于发起第N次请求
+		next : '.next'
+	});
+	// 加分页查询参数
+	ias.on(	"load", function(e){
+		e.ajaxOptions.data = {page:page++};
+	});
+	// 加载图片
+	ias.extension(new IASSpinnerExtension({
+	    src: 'images/loading.gif', // 图片地址
+	}));
+	
+	ias.extension(new IASTriggerExtension({
+	    text: '查看更多',
+	    offset: 5 // 第几页后开始
+	}));
 });
  
 //鼠标滚动超出侧边栏高度绝对定位
@@ -159,7 +167,7 @@ $(window).scroll(function () {
 };*/
 
 /*自定义右键菜单*/
-(function () {
+/*(function () {
     var oMenu = document.getElementById("rightClickMenu");
     var aLi = oMenu.getElementsByTagName("li");
 	//加载后隐藏自定义右键菜单
@@ -193,7 +201,7 @@ $(window).scroll(function () {
         $(oMenu).fadeOut(100);
 		//oMenu.style.display = "none"
     }
-})();
+})();*/
 
 /*禁止键盘操作*/
 /*document.onkeydown=function(event){
@@ -204,7 +212,7 @@ $(window).scroll(function () {
 }; */
 
 /*文章评论*/
-$(function(){
+/*$(function(){
 	$("#comment-submit").click(function(){
 		var commentContent = $("#comment-textarea");
 		var commentButton = $("#comment-submit");
@@ -230,16 +238,16 @@ $(function(){
 				promptText.text('评论成功!');
 			    commentContent.val(null);
 				$(".commentlist").fadeIn(300);
-				/*$(".commentlist").append();*/
+				$(".commentlist").append();
 				commentButton.attr('disabled',false);
 				commentButton.removeClass('disabled');
 			}
 		});
-		/*$(".commentlist").append(replace_em(commentContent.val()));*/
+		$(".commentlist").append(replace_em(commentContent.val()));
 		promptBox.fadeOut(100);
 		return false;
 	});
-});
+});*/
 //对文章内容进行替换
 function replace_em(str){
 	str = str.replace(/\</g,'&lt;');
@@ -249,10 +257,10 @@ function replace_em(str){
 }
 
 //Console
-try {
+/*try {
     if (window.console && window.console.log) {
         console.log("\n欢迎访问异清轩博客！\n\n在本站可以看到前端技术，后端程序，网站内容管理系统等文章；\n\n还有我的程序人生！！！\n");
         console.log("\n请记住我们的网址：%c www.ylsat.com", "color:red");
         console.log("\nPOWERED BY WY ALL RIGHTS RESERVED");
     }
-} catch (e) {};
+} catch (e) {};*/

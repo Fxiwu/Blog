@@ -13,6 +13,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sun.el.parser.AstMapData;
@@ -63,25 +64,28 @@ public class UserAction {
 
 
 	//登录  Ajax实现 ，使用vue
-	@GetMapping("login.do")
-	@ResponseBody
-	  public Result login(@Valid User user,Errors errors,HttpSession session) {
-		  try {
-	        if(errors.hasFieldErrors("account")||errors.hasFieldErrors("pwd")) {
-	        	Result res=new Result(0,"验证错误！",Utils.asMap(errors));
-	        	return res;
-	        }
-			User dbuser=ubiz.login(user);
-			session.setAttribute("loginedUser",dbuser);
-			return new Result(1,"登录成功",dbuser);
-		} catch (BizException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return new Result(e.getMessage());
+		 @PostMapping("login.do")
+			// 是在 Controller 使用 ==> 方法返回视图名 
+			// @ResponseBody 表示该方法的返回值是json数据
+			@ResponseBody
+			public Result login(@Valid User user, Errors errors, HttpSession session) {
+				try {
+					if (errors.hasFieldErrors("account") || errors.hasFieldErrors("pwd")) {
+						// 将错误结果转换成 Map集合再返回
+						Result res = new Result(0, "验证错误!", Utils.asMap(errors));
+						return res;
+					}
+					User dbuser = ubiz.login(user);
+					session.setAttribute("loginedUser", dbuser);
+			 
+					return new Result(1, "登录成功!", dbuser);
+				} catch (BizException e) {
+					e.printStackTrace();
+					return new Result(e.getMessage());
+				}
+			}
+ 
 		}
-		  
-		  
-	  }
 
-	 
-}
+
+ 

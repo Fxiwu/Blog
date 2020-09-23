@@ -28,22 +28,22 @@
 
 <body class="user-select single">
 <header class="header" th:replace="index::.header">
-   </header>
+</header>
 <section class="container">
   <div class="content-wrap">
     <div class="content">
       <header class="article-header">
-        <h1 class="article-title"><a href="article.html" th:text="${art.title}">php如何判断一个日期的格式是否正确</a></h1>
+        <h1 class="article-title"><a href="article.html" th:text="${article.title}">php如何判断一个日期的格式是否正确</a></h1>
         <div class="article-meta"> <span class="item article-meta-time">
           <time class="time" data-toggle="tooltip" data-placement="bottom" title="时间：2016-1-4 10:29:39">
                <i class="glyphicon glyphicon-time"></i> 
-               <span  th:text="${art.createtime}">2016-1-4 10:29:39</span>
+               <span  th:text="${article.createtime}">2016-1-4 10:29:39</span>
           </time>
           </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="来源：第一PHP社区"><i class="glyphicon glyphicon-globe"></i> 第一PHP社区</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：后端程序"><i class="glyphicon glyphicon-list"></i> <a href="program" title="">后端程序</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：120"><i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</span> </div>
       </header>
       <article class="article-content">
         <p><img data-original="images/banner/banner_03.jpg" src="images/banner/banner_03.jpg" alt="" /></p>
-        <div  th:utext="${art.content}"></div>
+        <div  th:utext="${article.content}"></div>
       </article>
       <div class="article-tags">标签：<a href="" rel="tag">PHP</a></div>
       <div class="relates">
@@ -173,13 +173,13 @@
 <script src="js/jquery.qqFace.js"></script> 
 <script type="text/javascript">
 
-$(function(){
+  $(function(){
 	$('.emotion').qqFace({
 		id : 'facebox', 
 		assign:'comment-textarea', 
 		path:'/Home/images/arclist/'	//表情存放的路径
 	});
- });   
+ });     
 </script>
 </body>
 </html>

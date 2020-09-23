@@ -1,24 +1,27 @@
 package com.yc.SpringBootPfstblog.bean;
 
 import java.sql.Timestamp;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
  
 
 public class Article {
 	 private  Integer  id;
 	 private  String  author;
 	
-	// @NotEmpty
+	  @NotEmpty
 	 private  String  title;
 	 
-	// @NotEmpty
+	  @NotEmpty
 	 private  String  content;
 	 private  String  keywords;
 	 private  String  description;
 	 
-	// @Min(1)
+	  @Min(1)
 	 private  Integer  categoryid;
 	 
-	// @NotEmpty
+	 @NotEmpty
 	 private  String  label;
 	 private  String  titleimgs;
 	 private  String  status;
