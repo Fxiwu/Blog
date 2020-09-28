@@ -25,9 +25,20 @@ public class Article {
 	 private  String  label;
 	 private  String  titleimgs;
 	 private  String  status;
+	 
 	 private  Timestamp  createtime;
 	 private  Integer  readcnt;
 	 private  Integer  agreecnt;
+	 
+	 private Category category;//所属分类对象
+	 
+	 
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 	public Integer getId() {
 		return id;
 	}

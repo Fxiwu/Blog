@@ -19,7 +19,7 @@ public class SpringBootPfstBlogApplication implements WebMvcConfigurer{
 		 
 		WebMvcConfigurer.super.addInterceptors(registry);
 		InterceptorRegistration	ir=registry.addInterceptor(new LoginInterceptor());
-		ir.addPathPatterns("/toAddArticle","/addrticle.do");
+		ir.addPathPatterns("/toAddArticle","/addrticle.do","/comment");
 	}
 
 	public static void main(String[] args) {

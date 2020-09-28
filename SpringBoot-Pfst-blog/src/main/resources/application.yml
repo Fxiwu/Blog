@@ -7,11 +7,17 @@ spring:
      username: root
      password: a
      driver-class-name: com.mysql.jdbc.Driver
-
+     #SpringBoot返回date日期格式化，解决返回为TIMESTAMP时间戳格式或8小时时间差
+  jackson:    
+     date-format:   yyyy-MM-dd HH:mm:ss
+     time-zone:   GMT+8   
+  
 logging: 
   level:  
     com: 
       yc:
          SpringBootPfstblog:   debug
-
+         
+ 
+  
    
