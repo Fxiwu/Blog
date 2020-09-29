@@ -24,6 +24,12 @@ public interface ArticleMapper {
 	})
 		public List<Article> selectByNew();
 	
+	
+	//查询热门文章
+		@Select("select * from article order by readCnt desc limit  5")
+	 public List<Article> selectByHot();
+		
+		
 	//查询帖子详情
 	@Select("select * from article where id=#{id}")
 	@ResultMap("rmAm")

@@ -1,5 +1,7 @@
 package com.yc.SpringBootPfstblog.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
@@ -44,8 +46,7 @@ public class ArticleAction {
 		   if(errors.hasErrors()) { 
 			mav.addObject("errors",Utils.asMap(errors));
 			mav.addObject("article", article);
-			System.out.println("========================");
-			System.out.println(Utils.asMap(errors));
+			 
 			 mav.setViewName("addArticle");
 			 //界面展现错误未写
 			 
@@ -55,5 +56,12 @@ public class ArticleAction {
 			 mav.setViewName("redirect:article?id="+article.getId());//通过响应重定向来传参
 		}
 	   return mav;
+	}
+   @GetMapping("list")
+	public List<Article> list(  ) {
+		 
+		 
+	 
+		return abiz.hotArticle();
 	}
 }
