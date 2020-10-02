@@ -17,7 +17,7 @@ public class CategoryBiz {
 	@Resource
 	private CategoryMapper cmapper;
 	
-	public List<Article> catelist(@Param("categoryid")int categoryid){
+	public List<Article> catelist(@Param("categoryid") int categoryid){
 		return cmapper.selectByCId(categoryid);
 		
 	}

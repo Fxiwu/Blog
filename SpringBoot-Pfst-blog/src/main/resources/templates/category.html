@@ -25,14 +25,14 @@
   <div class="content-wrap">
     <div class="content">
       <div class="title">
-        <h3>后端程序</h3>
+        <h3 th:text="${clist[0].category.name}">后端程序</h3>
       </div> 
       <article  th:each="c :${clist}" class="excerpt excerpt-1">
          <a class="focus" th:href="'article.html?categoryid='+${c.categoryid}" title="">
          <img class="thumb" data-original="images/excerpt.jpg" src="images/excerpt.jpg" alt="">
          </a>
-        <header><a class="cat" href="program" th:text="${c.categoryid}">后端程序<i></i></a>
-          <h2><a href="article.html" title="" th:text="${c.title}">php如何判断一个日期的格式是否正确</a></h2>
+        <header><a class="cat" href="program" th:text="${c.category.name}">后端程序<i></i></a>
+          <h2><a th:href="'article?id='+${c.id}" title="" th:text="${c.title}">php如何判断一个日期的格式是否正确</a></h2>
         </header>
         <p class="meta">
           <time class="time"><i class="glyphicon glyphicon-time"></i> <span th:text="${c.createtime}"></span></time>

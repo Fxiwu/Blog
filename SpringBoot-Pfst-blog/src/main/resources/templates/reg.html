@@ -49,7 +49,14 @@
     		邮箱: <input name="email" th:value="${user}!=null ? ${user.email} :''">
        		     <span class="e" th:if="${errors}!=null" th:text="${errors.get('email')}"></span><br>
 
-    		...其他字段,请自行扩展...<br>
+                        类型:  <select name="type" th:value="${user}!=null ? ${user.type} :''">
+                     <option  value="1">系统管理员</option>   
+                     <option value="2">普通管理员</option>  
+                     <option value="3" selected="selected">一般用户</option>  
+                 </select>
+    		
+
+            <br>
     		<button>注册</button>
      	</form>
     </div>

@@ -23,6 +23,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			} else {
 				// 页面跳转请求
 				response.setContentType("text/html;charset=utf-8");
+				 
 				response.sendRedirect("/?mustLogin");
 			}
 			return false;

@@ -39,13 +39,22 @@
                <i class="glyphicon glyphicon-time"></i> 
                <span  th:text="${article.createtime}">2016-1-4 10:29:39</span>
           </time>
-          </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="来源：第一PHP社区"><i class="glyphicon glyphicon-globe"></i> 第一PHP社区</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：后端程序"><i class="glyphicon glyphicon-list"></i> <a href="program" title="">后端程序</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：120"><i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</span> </div>
+          </span> 
+          <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="来源：第一PHP社区">
+             <i class="glyphicon glyphicon-globe"></i> 第一PHP社区</span>
+           <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="栏目：后端程序">
+             <i class="glyphicon glyphicon-list"></i> 
+             <a href="program" title="" th:text="${article.category.name}">后端程序</a>
+           </span> 
+         <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="查看：120"><i class="glyphicon glyphicon-eye-open"></i> 共120人围观</span> 
+         <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="评论：0"><i class="glyphicon glyphicon-comment"></i> 0个不明物体</span>
+          </div>
       </header>
       <article class="article-content">
         <p><img data-original="images/banner/banner_03.jpg" src="images/banner/banner_03.jpg" alt="" /></p>
         <div  th:utext="${article.content}"></div>
       </article>
-      <div class="article-tags">标签：<a href="" rel="tag">PHP</a></div>
+      <div class="article-tags">标签：<a href="" rel="tag" th:text="${article.category.name}">PHP</a></div>
       <div class="relates">
         <div class="title">
           <h3>相关推荐</h3>
