@@ -60,8 +60,6 @@ public class ArticleAction {
    @GetMapping("list")
 	public List<Article> list(  ) {
 		 
-		 
-	 
 		return abiz.hotArticle();
 	}
 }

@@ -83,11 +83,11 @@
       <div class="collapse navbar-collapse" id="header-navbar">
         <ul class="nav navbar-nav navbar-right">
           <li class="hidden-index active"><a data-cont="异清轩首页" href="/">异清轩首页</a></li>
-          <li><a href="category.html">前端技术</a></li>
-          <li><a href="category.html">后端程序</a></li>
-          <li><a href="category.html">管理系统</a></li>
-          <li><a href="category.html">授人以渔</a></li>
-          <li><a href="category.html">程序人生</a></li>
+          <li><a href="category?categoryid=6">前端技术</a></li>
+          <li><a href="category?categoryid=7">后端程序</a></li>
+          <li><a href="category?categoryid=4">管理系统</a></li>
+          <li><a href="category?categoryid=3">授人以渔</a></li>
+          <li><a href="category?categoryid=3">程序人生</a></li>
         </ul>
         <form class="navbar-form visible-xs" action="/Search" method="post">
           <div class="input-group">
@@ -266,8 +266,8 @@
                            const num = (i<10)?("0"+i) : i;
                                return num;
                            }
-                         this.nowDate = year + "年" + month + "月" + day+"日" ;
-                        this.nowTime = hour + ":" + minute+" "+getWeek;
+                         this.nowDate = year + "年" + this.month + "月" + this.day+"日" ;
+                        this.nowTime = this.hour + ":" + this.minute+" "+getWeek;
                      },
                            beforeDestroy() {
                                if (this.timer) {
